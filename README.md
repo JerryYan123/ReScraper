@@ -1,6 +1,6 @@
 # ReScraper: Unified Scraping and Cleaning of Web Data for Effective LLM Pretraining
 
-Anonymous code release accompanying the ICLR 2027 submission. The trained model, the refined corpus and the SFT
+Anonymous code release accompanying the paper. The trained model, the refined corpus and the SFT
 data will be released upon acceptance (referred to below as `<HF_ORG>/<MODEL>` and `<HF_ORG>/<DATASET>`).
 
 ReScraper replaces the heuristic HTML-to-text stack of pretraining pipelines (a rule-based scraper followed by
