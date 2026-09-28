@@ -32,7 +32,6 @@ the raw HTML of the whole DCLM source pool, and the output is deduplicated and t
 - [Pipeline](#pipeline)
 - [Setup](#setup)
 - [Reproducing the released model and corpus](#reproducing-the-released-model-and-corpus)
-- [Citation](#citation)
 - [License](#license)
 
 ## Pipeline
