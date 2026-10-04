@@ -4,8 +4,7 @@
 Two stages per page, both faithful to their sources:
   1. EXTRACT - resiliparse `extract_plain_text(HTMLTree.parse(html), main_content=True, alt_texts=False,
      preserve_formatting=True)`, i.e. exactly the settings of DCLM's `resiliparse_extraction_modifier`
-     (pretraining/dclm_patches/). Input = the SAME page universe the student reads:
-     Dripper step1 records with a non-empty `input` (raw html) and a non-empty `main_html` (lib/pool_join.py ST1).
+     (pretraining/dclm_patches/). Input = the raw html records of the pool (lib/pool_join.py ST1).
   2. PROX-C - line-numbered chunks of <=1500 tokens, one generation per chunk with
      gair-prox/web-chunk-refining-lm, then the generated program is executed over the document.
      trunc_text / merge_chunks / the sampling params are copied from the ProX repo's

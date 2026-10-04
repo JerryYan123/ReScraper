@@ -1,8 +1,7 @@
 """Pool-scale inference of the ReScraper model (the released corpus), reading the raw HTML directly.
 
-Input universe = Dripper step 1 over the pool ($DRIPPER_STEP1_DIR/<stem>.jsonl, lib/pool_join.ST1): every record
-with a non-empty raw HTML `input` and a non-empty `main_html`. The raw HTML is exactly what the training inputs
-were rendered from, so no content alignment is needed.
+Input = the raw HTML records of the pool ($DRIPPER_STEP1_DIR/<stem>.jsonl, lib/pool_join.ST1). The raw HTML is
+exactly what the training inputs were rendered from, so no content alignment is needed.
 
 Per shard: render the raw HTML with the training renderer (webkit_txt, 60 s timeout, pages under 20 characters
 dropped), number the lines (<lid:n>), skip prompts over 32,768 - 3,072 = 29,696 tokens, generate with
@@ -64,9 +63,6 @@ for stem in todo:
             try: r1 = json.loads(line)
             except ValueError: S["bad_step1_json"] += 1; continue
             raw = r1.get("input") or ""
-            # Universe = the pages the extractor actually produced text for, i.e. step1 records with a non-empty
-            # main_html. Measured on 6 shards: 10,446 such records vs 10,354 step2 rows (+0.9%), while the
-            # length-filtered pool has -14%. So this matches the page set of the baseline corpora within 1%.
             if not raw.strip(): S["empty_step1_input"] += 1; continue
             if not (r1.get("main_html") or "").strip(): S["no_main_html"] += 1; continue
             raws.append(raw)

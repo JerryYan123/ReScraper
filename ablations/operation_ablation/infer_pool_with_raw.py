@@ -79,9 +79,6 @@ for stem in todo:
             try: r1 = json.loads(line)
             except ValueError: S["bad_step1_json"] += 1; recs.append({"stem": stem, "idx": idx, "skip": "bad_step1_json"}); continue
             raw = r1.get("input") or ""
-            # Universe = the pages the extractor actually produced text for, i.e. step1 records with a non-empty
-            # main_html. Measured on 6 shards: 10,446 such records vs 10,354 step2 rows (+0.9%), while the
-            # length-filtered pool has -14%. So this matches the page set of the published corpora within 1%.
             if not raw.strip(): S["empty_step1_input"] += 1; recs.append({"stem": stem, "idx": idx, "skip": "empty_step1_input"}); continue
             if not (r1.get("main_html") or "").strip(): S["no_main_html"] += 1; recs.append({"stem": stem, "idx": idx, "in_md5": md5(raw), "skip": "no_main_html"}); continue
             raws.append(raw); keys.append({"stem": stem, "idx": idx, "in_md5": md5(raw)})

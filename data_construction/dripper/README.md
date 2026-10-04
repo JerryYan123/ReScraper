@@ -2,7 +2,6 @@
 
 The Dripper (MinerU-HTML) teacher is run over the whole source pool. Its outputs are used in several places:
 - the SFT targets (extraction part of every Stage-1 target);
-- the page universe of the student's pool inference and of the ProX-C runner (`lib/pool_join.py`);
 - the Dripper bars of Figure 3 (`baselines/scrapers/`, `baselines/ultrax/dripper_ultrax/`).
 
 Dripper is third-party and not vendored:

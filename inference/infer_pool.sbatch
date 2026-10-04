@@ -9,7 +9,7 @@
 #SBATCH --time=12:00:00
 #SBATCH --requeue
 #SBATCH --output=logs/rescraper_infer_%A_%a.log
-# Pool inference of the ReScraper model over the raw-HTML universe (Dripper step 1 records). Node-packed:
+# Pool inference of the ReScraper model over the raw HTML of the pool. Node-packed:
 # 1 array task = 1 node = 8 ranks (one GPU each), WORLD = NODES*8, resumable per shard.
 # The released corpus: 28 nodes x 8 H200 (WORLD 224), ~1.0-1.7 h per node task.
 # usage: sbatch --array=0-27 --export=ALL,WORLD=224,INFER_MODEL_PATH=$STAGE2_CKPT,INFER_OUT_DIR=$WORK_DIR/dclm_pipeline/rescraper_corpus/text infer_pool.sbatch

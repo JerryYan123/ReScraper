@@ -20,7 +20,7 @@ applied.
 ## Files
 | file | what it does |
 |---|---|
-| `proxc_pool.py` | Pool runner, one process per GPU, `<rank> <world>`. The page universe is the Dripper step-1 records with non-empty `input` and `main_html`, the same pages the student reads (`lib/pool_join.py`). For each page: resiliparse extraction (60 s timeout, worker pool), then ProX-C. It writes `$INFER_OUT_DIR/<stem>_processed.jsonl.gz` rows `{"text"}`, atomically. It is resumable per shard. |
+| `proxc_pool.py` | Pool runner, one process per GPU, `<rank> <world>`. The input is the raw HTML records of the pool (`lib/pool_join.py`). For each page: resiliparse extraction (60 s timeout, worker pool), then ProX-C. It writes `$INFER_OUT_DIR/<stem>_processed.jsonl.gz` rows `{"text"}`, atomically. It is resumable per shard. |
 | `infer_pool_proxc.sbatch` | One array task = one node, 8 ranks. `sbatch --array=0-27 --export=ALL,INFER_OUT_DIR=$WORK_DIR/dclm_pipeline/prox_c/text,WORLD=224 infer_pool_proxc.sbatch` |
 | `finish_proxc.sbatch` | Run with `--dependency=afterany:<array>`. See the section below. |
 | `proxc_pages.py` | The same model and settings on a JSONL of pages `{k, text}`. Output: `{k, proxc, outcome, program}`. Used for page-level comparisons such as the case studies. |
